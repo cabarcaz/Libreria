@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmls:lang>
+
+<head th:replace="/Template/plantilla::head"></head>
+
+<body>
+  <header th:replace="/Template/plantilla::header"></header>
+
+  <div class="container mt-3">
+
+    <div class="card bg-light">
+      <div class="card-header bg-dark text-white" th:text="${h1}"></div>
+      <div class="card-body ">
+        <form th:action="@{/autor/save}" th:object="${autor}" method="post" enctype="multipart/form-data">
+          <div class="form-group row mt-3"><input type="hidden" th:field="*{id}">
+            <div class="form-group row mt-3"><label for="nombre" class="col-sm-3 col-form-label">Nombre del Autor:</label>
+              <div class="col-sm-6"><input type="text" th:field="*{nombre}" class="form-control" id="nombre" placeholder="Nombre del Autor"></div>
+            </div>
+              <div class="form-group row py-3 mb-3"><label class="col-sm-3 col-form-label " for="alta">Alta del Autor:</label>
+                <div class="col-sm-6"><input type="text" th:field="*{alta}" class="form-control" id="alta" placeholder="true = agregar // false = eliminar"></div>
+              </div>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Guardar" />
+            <input class="btn btn-success" onclick="goBack()" value="Regresar" />
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer th:replace="/Template/plantilla::footer"></footer>
+
+</body>
+</html>
