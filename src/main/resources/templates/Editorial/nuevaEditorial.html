@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" xml:lang>
+<html xmlns:th="https://www.thymeleaf.org" xml:langxmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="/Template/plantilla::head"></head>
 
 <body>
   <header th:replace="/Template/plantilla::header"></header>
 
-  <div class="container mt-3">
+  <div class="container mt-3"sec:authorize="hasRole('ROLE_ADMIN')">
     <div class="card bg-light">
       <div class="card-header bg-dark text-white" th:text="${h1}"></div>
       <div class="card-body ">
-        <form th:action="@{/editorial/save}" th:object="${editorial}" method="post" enctype="multipart/form-data"><input
+        <form sec:authorize="hasRole('ROLE_ADMIN')"th:action="@{/editorial/save}" th:object="${editorial}" method="post" enctype="multipart/form-data"><input
             type="hidden" th:field="*{id}">
-          <div class="form-group row mt-3 mb-3"><label for="nombre" class="col-sm-3 col-form-label">Nombre de la
+          <div sec:authorize="hasRole('ROLE_ADMIN')"class="form-group row mt-3 mb-3"><label for="nombre" class="col-sm-3 col-form-label">Nombre de la
               Editorial:</label>
-            <div class="col-sm-6"><input type="text" th:field="*{nombre}" class="form-control" id="nombre"
+            <div sec:authorize="hasRole('ROLE_ADMIN')"class="col-sm-6"><input type="text" th:field="*{nombre}" class="form-control" id="nombre"
                 placeholder="Nombre de la Editorial" required> </div>
           </div>
-          <div class="card-footer text-center">
-            <input type="submit" class="btn btn-primary" value="Guardar" />
-            <input class="btn btn-success" onclick="goBack()" value="Regresar" />
+          <div sec:authorize="hasRole('ROLE_ADMIN')" class="card-footer text-center">
+            <input sec:authorize="hasRole('ROLE_ADMIN')"type="submit" class="btn btn-primary" value="Guardar" />
+            <input sec:authorize="hasRole('ROLE_ADMIN')"class="btn btn-success" onclick="goBack()" value="Regresar" />
           </form>
         </div>
       </div>

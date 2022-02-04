@@ -10,6 +10,7 @@ import guiamvc.ejercicio1.entidades.*;
 import guiamvc.ejercicio1.servicios.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,10 +46,11 @@ public class LibroController {
     List<Libro> listadoLibros = libroServicio.listarTodos();
     model.addAttribute("libros", listadoLibros);
     model.addAttribute(TITULO, "Listado de Libros");
-    model.addAttribute("h1", "Libros disponibles");
+    model.addAttribute("h1", "Listado de Libros");
     return "/libro/listadoLibros";
   }
 
+  @Secured("ROLE_ADMIN")
   @GetMapping("/create")
   public String crear(Model model) {
 
@@ -65,6 +67,7 @@ public class LibroController {
     return "/libro/nuevoLibro";
   }
 
+  @Secured("ROLE_ADMIN")
   @PostMapping("/save")
   public String guardar(@Valid @ModelAttribute Libro libro, SessionStatus ss, Model model, @RequestParam("file") MultipartFile imagen) {
 
@@ -86,6 +89,7 @@ public class LibroController {
     return REDIRECT;
   }
 
+  
   @GetMapping("/detalle/{id}")
   public String detalleLibro(@PathVariable("id") String id, Model model, RedirectAttributes attribute) {
 
@@ -104,13 +108,14 @@ public class LibroController {
     List<Editorial> listEditoriales = editorialServicio.listarTodos();
 
     model.addAttribute(TITULO, "Detalle");
-    model.addAttribute("h1", "DetalleS del libro ");
+    model.addAttribute("h1", "Detalles del libro ");
     model.addAttribute(LIBRO2, libro);
     model.addAttribute(AUTORES, listAutores);
     model.addAttribute(EDITORIALES, listEditoriales);
     return "/libro/detalleLibro";
   }
 
+  @Secured("ROLE_ADMIN")
   @GetMapping("/edit/{id}")
   public String editar(@PathVariable("id") String id, Model model, RedirectAttributes attribute) {
 
@@ -136,6 +141,7 @@ public class LibroController {
     return "/libro/editarLibro";
   }
 
+  @Secured("ROLE_ADMIN")
   @GetMapping("/delete/{id}")
   public String eliminar(@PathVariable("id") String id, RedirectAttributes attribute) {
      Libro libro = null;

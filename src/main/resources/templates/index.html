@@ -33,7 +33,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- Galeria -->
+		<!-- Titulo -->
 		<div class="row py-5">
 			<div class="col">
 					<div class="border-bottom"><h1 class="text-center">Novedades</h1></div>
@@ -41,8 +41,6 @@
 		</div>
 		<!-- Detalle LIbros -->
 		<div class="card contenedor container-fluid row-6">
-		
-
 				<div th:each="libro : ${libros}">
 					<div class="caja ">
 						<div class="card card-img-top img-thumbnail ii">
@@ -56,9 +54,7 @@
 						</div>
 					</div>
 				</div>
-			
 		</div>
-		
 	</main>
 
 	<footer th:replace="/Template/plantilla::footer"></footer>

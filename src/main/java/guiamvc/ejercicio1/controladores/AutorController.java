@@ -26,7 +26,7 @@ public class AutorController {
   @Autowired
   private AutorServicio autorServicio;
 
-  @Secured("ROLE_USER")
+  // @Secured("ROLE_USER")
   @GetMapping("/")
   public String listarAutores(Model model) {
     List<Autor> listadoAutores = autorServicio.listarTodos();
@@ -46,7 +46,7 @@ public class AutorController {
     autor.setAlta(true);
     return "/autor/nuevoAutor";
   }
-
+  @Secured("ROLE_ADMIN")
   @PostMapping("/save")
   public String guardar(@Valid @ModelAttribute Autor autor, SessionStatus ss,Model model,RedirectAttributes attribute){
     autorServicio.guardar(autor);
@@ -54,7 +54,7 @@ public class AutorController {
     ss.setComplete();  
     return BACK;
   }
-
+  @Secured("ROLE_ADMIN")
   @GetMapping("/edit/{id}")
   public String editar(@PathVariable("id") String id, Model model, RedirectAttributes attribute) {
     Autor autor = null;
@@ -75,6 +75,7 @@ public class AutorController {
     return "/autor/editarAutor";
   }
 
+  @Secured("ROLE_ADMIN")
   @GetMapping("/delete/{id}")
   public String eliminar(@PathVariable("id") String id, RedirectAttributes attribute) {
     Autor autor = null;

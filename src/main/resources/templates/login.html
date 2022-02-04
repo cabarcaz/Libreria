@@ -1,33 +1,31 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xml:lang>
+
 <head th:replace="/Template/plantilla::head"></head>
+
 <body>
 	<header th:replace="/Template/plantilla::header"></header>
-	
-	<div class="container">
-		
-		<div class="container theme-showcase" role="main">
-			<hr class="featurette-divider">
-			<img th:src="@{/images/login.png}" width="136" height="136" class="center" alt="">
-			<form class="form-signin" th:action="@{/login}" method="post">        
-				<h3 class="form-signin-heading text-center">Iniciar Session</h3>        
-				<label for="username" class="sr-only">Usuario</label>
-				<input type="text" id="username" name="username" class="form-control" 
-					placeholder="Usuario" required autofocus>
-				
-				<label for="password" class="sr-only">Contraseña</label>
-				<input type="password" id="password" name="password" class="form-control"
-					 placeholder="Password" required>
-				
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-			</form>
 
+	<div class="container theme-showcase cont" role="main" id="contenedor">
+		<hr class="featurette-divider">
+		<div id="central">
+			<div id="login">
+				<div class="titulo">Bienvenido</div>
+				<form class="form-signin" th:action="@{/login}" method="post" id="loginform">
+					<input type="text" id="username" name="username" class="form-control" placeholder="Usuario" required autofocus>
+					<input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+				</form>
+				<div class="pie-form">
+					<a href="#">¿Perdiste tu contraseña?</a>
+					<a href="#">¿No tienes Cuenta? Registrate</a>
+				</div>
+				<button class="btn btn-lg btn-primary btn-block" onclick="goBack()">Regresar</button>
+			</div>
 		</div>
-		
 	</div>
-	
+
 	<footer th:replace="/Template/plantilla::footer"></footer>
-	
+
 </body>
 </html>

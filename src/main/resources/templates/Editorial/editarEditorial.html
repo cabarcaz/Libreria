@@ -6,25 +6,25 @@
 <body>
   <header th:replace="/Template/plantilla::header"></header>
 
-  <div class="container mt-3">
+  <div class="container mt-3"sec:authorize="hasRole('ROLE_ADMIN')">
     <div class="card bg-light">
       <div class="card-header bg-dark text-white" th:text="${h1}"></div>
       <div class="card-body mt-3">
-        <form th:action="@{/editorial/save}" th:object="${editorial}" method="post" enctype="multipart/form-data">
-          <input type="hidden" th:field="*{id}">
-          <div class="form-group row"><label for="nombre" class="col-sm-3 col-form-label">Nombre de la
+        <form sec:authorize="hasRole('ROLE_ADMIN')"th:action="@{/editorial/save}" th:object="${editorial}" method="post" enctype="multipart/form-data">
+          <input sec:authorize="hasRole('ROLE_ADMIN')"type="hidden" th:field="*{id}">
+          <div sec:authorize="hasRole('ROLE_ADMIN')"class="form-group row"><label for="nombre" class="col-sm-3 col-form-label">Nombre de la
               Editorial:</label>
-            <div class="col-sm-6"><input type="text" th:field="*{nombre}" class="form-control" id="nombre"
+            <div sec:authorize="hasRole('ROLE_ADMIN')"class="col-sm-6"><input type="text" th:field="*{nombre}" class="form-control" id="nombre"
                 placeholder="Nombre de la Editorial"></div>
           </div>
-          <div class="form-group row mt-3"><label class="col-sm-3 col-form-label " for="alta">Autor disponible:</label>
-            <div class="col-sm-6"><input type="text" th:field="*{alta}" class="form-control" id="alta"
+          <div sec:authorize="hasRole('ROLE_ADMIN')"class="form-group row mt-3"><label class="col-sm-3 col-form-label " for="alta">Autor disponible:</label>
+            <div sec:authorize="hasRole('ROLE_ADMIN')"class="col-sm-6"><input type="text" th:field="*{alta}" class="form-control" id="alta"
                 placeholder="true or false"></div>
           </div>
         </div>
-        <div class="card-footer text-center">
-          <input type="submit" class="btn btn-primary" value="Guardar" />
-          <input class="btn btn-success" onclick="goBack()" value="Regresar" />
+        <div sec:authorize="hasRole('ROLE_ADMIN')"class="card-footer text-center">
+          <input sec:authorize="hasRole('ROLE_ADMIN')" type="submit" class="btn btn-primary" value="Guardar" />
+          <input sec:authorize="hasRole('ROLE_ADMIN')"class="btn btn-success" onclick="goBack()" value="Regresar" />
         </div>
       </form>
     </div>

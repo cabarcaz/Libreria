@@ -22,8 +22,9 @@ public class LoginController {
       attribute.addFlashAttribute("warning", " ATENCION: ya ha iniciado sesión.");
       return "redirect:/";
     }
-    if (logout != null) {
+    if (logout != null) {attribute.addFlashAttribute("success", "SESION FINALIZADA CON EXITO.");
       model.addAttribute("success", "SESION FINALIZADA CON EXITO.");
+      return "redirect:/";
     }
 
     return "login";

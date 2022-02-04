@@ -16,7 +16,6 @@ import guiamvc.ejercicio1.util.LoginSuccessMessage;
 @Configuration
 public class WebConfig extends WebSecurityConfigurerAdapter {
   
-  private static final String A = "ADMIN";
 
   @Autowired
   private DataSource dataSource;
@@ -31,12 +30,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     
     http.authorizeRequests()
-    .antMatchers("/","/css/**","/images/**","/js/**").permitAll()
-    // .antMatchers("/autor/").hasAnyRole("USER")
-    // .antMatchers("/autor/create").hasAnyRole(A)
-    // .antMatchers("/autor/save").hasAnyRole(A)
-    // .antMatchers("/autor/edit/**").hasAnyRole(A)
-    // .antMatchers("/autor/delete/**").hasAnyRole(A)
+    .antMatchers("/","/css/**","/images/**","/js/**","/contacto/","/autor/","/libro/","/editorial/","/libro/detalle/**").permitAll()
     .anyRequest().authenticated()
     .and()
     .formLogin()

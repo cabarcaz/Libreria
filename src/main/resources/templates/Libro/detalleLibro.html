@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" xml:lang>
+<html xmlns:th="https://www.thymeleaf.org" xml:lang xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="/Template/plantilla::head"></head>
 
@@ -13,7 +13,7 @@
         <div class="form-group row  ">
           <img class="img-thumbnail rounded float-left" th:src="@{'/images/libros/' + ${libro.imagen}}"
             th:alt="${libro.imagen}" style="max-width: 25%;" alt="">
-          <div class="col-sm-6 ">
+          <div class="col-sm-6 text-capitalize">
             <ul class="list-group mb-3 ">
               <li class="list-group-item" th:text="'Titulo del Libro : ' + ${libro.titulo}"></li>
               <li class="list-group-item" th:text="'ISBN del Libro : ' + ${libro.isbn}"></li>
@@ -23,8 +23,8 @@
               <li class="list-group-item" th:text="'Cantidad total : ' + ${libro.ejemplares}"></li>
               <li class="list-group-item"th:text="'Cantidad Disponible : ' + ${(libro.ejemplares-libro.ejemplaresPrestados)}"></li>
             </ul>
-            <button class="btn btn-success" onclick="goBack()">Regresar</button>
-            <button class="btn btn-success">Solicitar</button>
+            <button class="btn btn-success" onclick="goBack()" >Regresar</button>
+            <button class="btn btn-success"sec:authorize="isAuthenticated">Solicitar</button>
           </div>
         </div>
       </div>

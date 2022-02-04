@@ -6,6 +6,7 @@ import guiamvc.ejercicio1.entidades.Editorial;
 import guiamvc.ejercicio1.servicios.EditorialServicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class EditorialController {
     model.addAttribute("h1", "Lista de Editoriales");
     return "/editorial/listadoEditoriales";
   }
-
+  @Secured("ROLE_ADMIN")
   @GetMapping("/create")
   public String crear(Model model) {
     Editorial editorial = new Editorial();
@@ -44,7 +45,7 @@ public class EditorialController {
     editorial.setAlta(true);
     return "/editorial/nuevaEditorial";
   }
-
+  @Secured("ROLE_ADMIN")
   @PostMapping("/save")
   public String guardar(@ModelAttribute Editorial editorial, Model model, SessionStatus ss, RedirectAttributes attribute) {
 
@@ -53,7 +54,7 @@ public class EditorialController {
     ss.setComplete();
     return REDIRECT;
   }
-
+  @Secured("ROLE_ADMIN")
   @GetMapping("/edit/{id}")
   public String editar(@PathVariable("id") String id, Model model, RedirectAttributes attribute) {
     Editorial editorial = null;
@@ -73,7 +74,7 @@ public class EditorialController {
     model.addAttribute(EDITORIAL2, editorial);
     return "/editorial/editarEditorial";
   }
-
+  @Secured("ROLE_ADMIN")
   @GetMapping("/delete/{id}")
   public String eliminar(@PathVariable("id") String id, RedirectAttributes attribute) {
     Editorial editorial = null;

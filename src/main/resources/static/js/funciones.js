@@ -1,3 +1,4 @@
+// Funciones mensaje alerta borrado
 function eliminarAutor(id) {
   swal({
       title: "Seguro desea eliminar el registro",
@@ -26,7 +27,6 @@ function eliminarAutor(id) {
       }
     });
   }
-
 function eliminarEditorial(id) {
   swal({
       title: "Seguro desea eliminar el registro",
@@ -56,7 +56,6 @@ function eliminarEditorial(id) {
       }
     });
 }
-
 function eliminarLibro(id) {
   swal({
       title: "Seguro desea eliminar el registro",
@@ -86,12 +85,31 @@ function eliminarLibro(id) {
       }
     });
 }
-
+// funcion boron regresar
 function goBack() {
   window.history.back();
 }
-
+// funcion alerta bootstrap
 var alertList = document.querySelectorAll('.alert')
 alertList.forEach(function (alert) {
   new bootstrap.Alert(alert)
 })
+
+// funcion page up 
+$(document).ready(function(){
+
+	$('.ir-arriba').click(function(){
+		$('body, html').animate({
+			scrollTop: '0px'
+		}, 300);
+	});
+
+	$(window).scroll(function(){
+		if( $(this).scrollTop() > 0 ){
+			$('.ir-arriba').slideDown(300);
+		} else {
+			$('.ir-arriba').slideUp(300);
+		}
+	});
+
+});

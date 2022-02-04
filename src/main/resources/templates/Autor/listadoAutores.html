@@ -2,7 +2,6 @@
 <html xmlns:th="https://www.thymeleaf.org" xml:lang xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="/Template/plantilla::head"></head>
-</head>
 
 <body>
   <header th:replace="/Template/plantilla::header"></header>
@@ -21,14 +20,14 @@
       <thead>
         <tr>
           <th scope="col" >Nombre del Autor</th>         
-           <th scope="col"sec:authorize="hasRole('ROLE_USER')">Editar</th>
+           <th scope="col"sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
            <th scope="col"sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
         </tr>
       </thead>
       <tbody>
         <tr th:each="autor:${autores}">
           <td th:text="${autor.nombre}"></td>
-          <td sec:authorize="hasRole('ROLE_USER')">
+          <td sec:authorize="hasRole('ROLE_ADMIN')">
             <a th:href="@{/autor/edit/}+${autor.id}" class="btn btn-warning btn-sm" th:text="'Editar'"
               title="Editar Registro">Editar</a>
           </td>
