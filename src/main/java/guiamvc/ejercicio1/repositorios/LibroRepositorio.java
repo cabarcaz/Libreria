@@ -14,5 +14,6 @@ import org.springframework.stereotype.Repository;
 public interface LibroRepositorio extends JpaRepository<Libro, String> {
 
   @Query("SELECT l FROM Libro l ORDER BY l.id ASC ")
+  
   List<Libro> listaCorta();
 }

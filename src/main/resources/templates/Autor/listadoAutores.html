@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" xml:lang>
+<html xmlns:th="https://www.thymeleaf.org" xml:lang xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="/Template/plantilla::head"></head>
 </head>
@@ -11,7 +11,7 @@
     <form class="row g-3">
       <div class="col-auto"><h2 class="d-flex" th:text="${h1}"></h2></div>
       <div class="col-auto">
-        <a th:href="@{/autor/create}" class="btn btn-primary" th:text="'Nuevo Autor'" title="Crear nuevo registro"></a>
+        <a th:href="@{/autor/create}" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" th:text="'Nuevo Autor'" title="Crear nuevo registro"></a>
         <input class="btn btn-success" onclick="goBack()" value="Regresar" /> 
       </div>
     </form>
@@ -20,19 +20,19 @@
     <table class="table table-striped table-hover table-sm table-bordered">
       <thead>
         <tr>
-          <th scope="col">Nombre del Autor</th>         
-           <th scope="col">Editar</th>
-          <th scope="col">Eliminar</th>
+          <th scope="col" >Nombre del Autor</th>         
+           <th scope="col"sec:authorize="hasRole('ROLE_USER')">Editar</th>
+           <th scope="col"sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
         </tr>
       </thead>
       <tbody>
         <tr th:each="autor:${autores}">
           <td th:text="${autor.nombre}"></td>
-          <td>
+          <td sec:authorize="hasRole('ROLE_USER')">
             <a th:href="@{/autor/edit/}+${autor.id}" class="btn btn-warning btn-sm" th:text="'Editar'"
               title="Editar Registro">Editar</a>
           </td>
-          <td><a th:onclick="eliminarAutor([[${autor.id}]])" class="btn btn-danger btn-sm" th:text="'Eliminar'"title="Eliminar Registro">Eliminar</a></td>
+          <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:onclick="eliminarAutor([[${autor.id}]])" class="btn btn-danger btn-sm" th:text="'Eliminar'"title="Eliminar Registro">Eliminar</a></td>
         </tr>
       </tbody>
     </table>

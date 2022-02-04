@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import guiamvc.ejercicio1.entidades.Autor;
 import guiamvc.ejercicio1.servicios.AutorServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ public class AutorController {
   @Autowired
   private AutorServicio autorServicio;
 
+  @Secured("ROLE_USER")
   @GetMapping("/")
   public String listarAutores(Model model) {
     List<Autor> listadoAutores = autorServicio.listarTodos();
@@ -33,7 +35,8 @@ public class AutorController {
     model.addAttribute("h1", "Lista de Autores");
     return "/autor/listadoAutores";
   }
-
+  
+  @Secured("ROLE_ADMIN")
   @GetMapping("/create")
   public String crear(Model model) {
     Autor autor = new Autor();
