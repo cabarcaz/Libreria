@@ -2,7 +2,7 @@
 <html xml:lang xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-  <!-- meta basico -->
+
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +38,6 @@
   <!-- icono arrow up -->
   <link rel="stylesheet" href="https://i.icomoon.io/public/temp/a46c294701/UntitledProject/style.css">
 
-  <!-- title page -->
   <title th:text="${titulo}"></title>
 
 </head>
@@ -46,7 +45,7 @@
 <body>
   <header>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border border-3" style="background-color: #e3f2fd">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light " style="background-color: #e3f2fd">
       <div class="container-md">
         <a th:href="@{/}" class="navbar-brand"><img src="/images/logo/Sin-título-1.png" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#contenidoMenu"
@@ -56,7 +55,7 @@
           <ul class="navbar-nav me-auto fw-bold">
             <li class="nav-item"><a th:href="@{/}" class="nav-link">Inicio</a></li>
             <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" id="submenuLibros" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">Librería</a>
+                data-bs-toggle="dropdown" aria-expanded="false">Libreria</a>
               <!--Sub menú-->
               <ul class="dropdown-menu" aria-labelledby="submenuLibros">
                 <li><a th:href="@{/autor/}" class="dropdown-item">Autores</a></li>
@@ -70,11 +69,11 @@
             <!-- button session -->
           <ul class="navbar-nav ml-auto">
             <li sec:authorize="!isAuthenticated()">
-              <a class="btn btn-outline-dark" th:href="@{/login}">Iniciar Sesión</a>
+              <a class="btn btn-outline-dark" th:href="@{/login}">Iniciar Sesion</a>
             </li>
 
             <div class="dropdown" sec:authorize="isAuthenticated()">
-              <a class="btn btn-outline-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+              <a class="btn btn-outline-warning dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span sec:authentication="name"></span>
               </a>
@@ -82,7 +81,7 @@
                 <li><a class="dropdown-item" href="#">Perfil</a></li>
                 <li><a class="dropdown-item" href="#">Reservas</a></li>
                 <form th:action="@{/logout}" method="post">
-                  <button class="dropdown-item" type="submit">Cerrar Sesión</button>
+                  <button class="dropdown-item" type="submit">Cerrar Sesion</button>
                 </form>
               </ul>
             </div>
@@ -112,8 +111,8 @@
   </header>
 
   
-  <footer class="border border-3 mx-4 fw-bold">
-    <ul class="nav justify-content-center border-bottom mt-3">
+  <footer>
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3 pt-4">
       <li class="nav-item"><a th:href="@{/}" class="nav-link px-2 text-muted">Inicio</a></li>
       <li class="nav-item"><a th:href="@{/libro/}" class="nav-link px-2 text-muted">Libros</a></li>
       <li class="nav-item"><a th:href="@{/autor/}" class="nav-link px-2 text-muted">Autores</a></li>
@@ -121,7 +120,7 @@
       <li class="nav-item"><a th:href="@{/contacto/}" class="nav-link px-2 text-muted">Contacto</a></li>
       <li class="nav-item"><a th:href="@{/login}" class="nav-link px-2 text-muted">Ingresar</a></li>
     </ul>
-    <p class="text-center text-muted mt-3">&copy; 2022 Company, Inc</p>
+    <p class="text-center text-muted">&copy; 2022 Company, Inc</p>
   </footer>
 
 </body>
